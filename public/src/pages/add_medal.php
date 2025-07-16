@@ -53,3 +53,7 @@ require_once __DIR__ . '/../db/init_models.php';
         <button type="submit" class="btn btn-outline-success mt-2 w-25">Добавить</button>
     </div>
 </form>
+
+<?php
+require_once __DIR__ . '/../scripts/footer.php';
+?>

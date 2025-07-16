@@ -8,6 +8,26 @@ class Model
     private $dbConnection;
     private $fields;
 
+    private function fetchData(string $query): array
+    {
+        $result = $this->dbConnection->makeQuery($query);
+        $resultArray = [];
+
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $record = [];
+                foreach ($this->fields as $field) {
+                    if (array_key_exists($field, $row)) {
+                        $record[$field] = $row[$field];
+                    }
+                }
+                $resultArray[] = $record;
+            }
+        }
+
+        return $resultArray;
+    }
+
     public function __construct(string $tableName, array $fields)
     {
         $this->tableName = $tableName;
@@ -17,24 +37,11 @@ class Model
 
     public function all(): array
     {
-        $result = $this->dbConnection->makeQuery('SELECT * FROM ' . $this->tableName);
-
-        $resultArray = [];
-
-        while ($row = $result->fetch_assoc()) {
-            $record = [];
-
-            foreach ($this->fields as $field) {
-                $record[$field] = $row[$field];
-            }
-
-            $resultArray[] = $record;
-        }
-
-        return $resultArray;
+        return $this->fetchData('SELECT * FROM ' . $this->tableName);
     }
 
-    public function insert(array $values): void
+
+    public function insert(array $values): int
     {   
         $fieldNamesArray = [];
         
@@ -56,6 +63,18 @@ class Model
             $fielsNameString . 
             ' VALUES ' .
             $valuesString
+        );
+
+        return $this->dbConnection->getLastInsertId();
+    }
+
+    public function where(string $query): array 
+    {
+         return $this->fetchData(
+            'SELECT * FROM ' . 
+            $this->tableName . 
+            ' WHERE ' . 
+            $query
         );
     }
 

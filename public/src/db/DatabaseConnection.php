@@ -39,6 +39,11 @@ class DatabaseConnection
         return $this->connection->query($query);
     }
 
+    public function getLastInsertId(): int
+    {
+        return mysqli_insert_id($this->connection);
+    }
+
     public function closeConnetction(): void
     {
         $this->connection->close();

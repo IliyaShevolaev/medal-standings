@@ -6,20 +6,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $medalToInsert = [];
     $medalToInsert[] = "'" . $_POST['type'] . "'";
     $medalToInsert[] = $_POST['sport_type_id'];
+    $medalToInsert[] = $_POST['country_id'];
 
-    var_dump($medalToInsert);
-
-    $medalSportsmansToInsert = [];
-    //$medalSportsmansToInsert[] = $_POST['sport_type_id'];
-    $medalSportsmansToInsert[] = $_POST['sportsmans_id'];
-
+    $currentMedalId = $medals->insert($medalToInsert);
+    
+    var_dump($_POST['sportsmans_id']);
     echo '<br>';
-    var_dump($medalSportsmansToInsert);
+    var_dump($currentMedalId);
 
-    //вставка отдельно в медали отдельно в медали_спотсмены (тут циклом)
+    foreach ($_POST['sportsmans_id'] as $sportsmanId) {
+        $medalSportsmansToInsert = [];
+        $medalSportsmansToInsert[] = $currentMedalId;
+        $medalSportsmansToInsert[] = $sportsmanId;
 
-    //$sportTypes->insert($sportTypeToInsert);
+        $medalsSportsmans->insert($medalSportsmansToInsert);
+    }
 
-    //header("Location: " . $_SERVER['HTTP_REFERER']);
-    //exit;
+    header("Location: " . '/');
+    exit;
 }
