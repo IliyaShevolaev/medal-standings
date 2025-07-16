@@ -3,8 +3,7 @@ require_once __DIR__ . '/../scripts/header.php';
 require_once __DIR__ . '/../db/init_models.php';
 ?>
 
-<div class="d-flex flex-column justify-content-center align-items-center"
-    style="padding-left: 10rem; padding-right: 10rem;">
+<div class="d-flex flex-column justify-content-center align-items-center">
     <div class="input-group mt-3 ">
         <form class="w-100" method="post" action="/src/scripts/sport_types/create_sport_type.php">
             <input class="form-control" type="text" name="name" placeholder="Название вида спорта">

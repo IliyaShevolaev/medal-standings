@@ -18,11 +18,10 @@
 
 ?>
 
-<div class="d-flex flex-column justify-content-center align-items-center"
-    style="padding-left: 10rem; padding-right: 10rem;">
+<div class="container d-flex flex-column justify-content-center align-items-center">
     <table class="table table-primary mt-3">
         <thead>
-            <tr>
+            <tr class="table-header">
                 <th scope="col table-primary"><a class="link-nonwrap" href="<?= '/?&asc=' . $asc?>">Место</a></th>
                 <th scope="col table-primary"><a class="link-nonwrap" href="<?= '/?sort_key=name&asc=' . $asc?>">Страна</a></th>
                 <th scope="col table-primary"><a class="link-nonwrap" href="<?= '/?sort_key=gold&asc=' . $asc?>">Золотые медали</a></th>

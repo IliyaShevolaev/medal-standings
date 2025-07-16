@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../db/init_models.php';
 require_once __DIR__ . '/../../scripts/get_name.php';
 
 $allMedals = $medals->all();
-$countryNames = $countries->all();
+$allCountries = $countries->all();
 
 $medalsByCountry = [];
 
@@ -33,6 +33,19 @@ foreach ($allMedals as $medal) {
     }
 
     $medalsByCountry[$countryId]['total']++;
-    $medalsByCountry[$countryId]['name'] = getNameById($countryNames, $countryId);
+    $medalsByCountry[$countryId]['name'] = getNameById($allCountries, $countryId);
+}
+
+foreach ($allCountries as $country) {
+    if (!key_exists($country['id'], $medalsByCountry)) {
+        $medalsByCountry[$country['id']] = [
+            'gold' => 0,
+            'silver' => 0,
+            'bronze' => 0,
+            'total' => 0
+        ];
+
+        $medalsByCountry[$country['id']]['name'] = getNameById($allCountries, $country['id']);
+    }
 }
 

@@ -4,8 +4,7 @@ require_once __DIR__ . '/../db/init_models.php';
 ?>
 
 <form class="w-100" method="post" action="/src/scripts/medals/create_medal.php">
-    <div class="d-flex flex-row justify-content-between align-items-center mt-3"
-        style="padding-left: 25rem; padding-right: 25rem;">
+    <div class="main-container  d-flex flex-row justify-content-between align-items-center mt-3">
         <div>
             <p>Тип медали</p>
             <select class="form-select" name="type">
