@@ -3,13 +3,10 @@
 require_once __DIR__ . '/../../db/init_models.php';
 require_once __DIR__ . '/../../scripts/get_name.php';
 
-
-
 $allMedals = $medals->all();
 $countryNames = $countries->all();
 
 $medalsByCountry = [];
-$currentPlace = 0;
 
 foreach ($allMedals as $medal) {
     $countryId = $medal['country_id'];
@@ -36,7 +33,6 @@ foreach ($allMedals as $medal) {
     }
 
     $medalsByCountry[$countryId]['total']++;
-    $medalsByCountry[$countryId]['place'] = ++$currentPlace;
     $medalsByCountry[$countryId]['name'] = getNameById($countryNames, $countryId);
 }
 

@@ -1,5 +1,21 @@
 <?php 
-    require_once __DIR__ . '/../scripts/medals/medals_table_count.php'
+    require_once __DIR__ . '/../scripts/medals/medals_table_count.php';
+    require_once __DIR__ . '/../scripts/medals/sort_medals.php';
+
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        $asc = false;
+
+        if (isset($_GET['asc'])) {
+            $asc = !$_GET['asc'];
+        }
+
+        if (isset($_GET['sort_key'])) {
+            columnSort($medalsByCountry, $_GET['sort_key'], $asc);
+        } else {
+            defaultSort($medalsByCountry, $asc);
+        }
+    }
+
 ?>
 
 <div class="d-flex flex-column justify-content-center align-items-center"
@@ -7,12 +23,12 @@
     <table class="table table-primary mt-3">
         <thead>
             <tr>
-                <th scope="col table-primary">Место</th>
-                <th scope="col table-primary">Страна</th>
-                <th scope="col table-primary">Золотые медали</th>
-                <th scope="col table-primary">Серебряные медали</th>
-                <th scope="col table-primary">Бронзовые медали</th>
-                <th scope="col table-primary">Сумма медалей</th>
+                <th scope="col table-primary"><a class="link-nonwrap" href="<?= '/?&asc=' . $asc?>">Место</a></th>
+                <th scope="col table-primary"><a class="link-nonwrap" href="<?= '/?sort_key=name&asc=' . $asc?>">Страна</a></th>
+                <th scope="col table-primary"><a class="link-nonwrap" href="<?= '/?sort_key=gold&asc=' . $asc?>">Золотые медали</a></th>
+                <th scope="col table-primary"><a class="link-nonwrap" href="<?= '/?sort_key=silver&asc=' . $asc?>">Серебряные медали</a></th>
+                <th scope="col table-primary"><a class="link-nonwrap" href="<?= '/?sort_key=bronze&asc=' . $asc?>">Бронзовые медали</a></th>
+                <th scope="col table-primary"><a class="link-nonwrap" href="<?= '/?sort_key=total&asc=' . $asc?>">Сумма медалей</a></th>
             </tr>
         </thead>
         <tbody>
