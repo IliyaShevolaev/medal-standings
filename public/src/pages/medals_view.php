@@ -4,6 +4,13 @@ require_once __DIR__ . '/../scripts/header.php';
 require_once __DIR__ . '/../db/idiorm_init.php';
 require_once __DIR__ . '/../scripts/get_name.php';
 
+// SELECT 
+// *
+// FROM medals 
+// JOIN medals_sportsmans ON medals.id = medals_sportsmans.medal_id
+// JOIN sportsmans ON sportsmans.id = medals_sportsmans.sportsman_id
+// WHERE medals.type = 'gold' AND medals.country_id = 1;
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $medalTypeHeader = '';
 

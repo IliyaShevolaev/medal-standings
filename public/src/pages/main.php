@@ -34,9 +34,9 @@
             <tr>
                 <td><?= $row['place'] ?></td>
                 <td><?= strip_tags($row['name'], ['<b><i><p><strong>']) ?></td>
-                <td><?= $row['gold'] ?> <a class="btn btn-primary" href="<?='/src/pages/medals_view.php?country=' . $id . '&medal=gold'?>">-></a> </td>
-                <td><?= $row['silver'] ?> <a class="btn btn-primary" href="<?='/src/pages/medals_view.php?country=' . $id . '&medal=silver'?>">-></a> </td>
-                <td><?= $row['bronze'] ?> <a class="btn btn-primary" href="<?='/src/pages/medals_view.php?country=' . $id . '&medal=bronze'?>">-></a> </td>
+                <td><?= $row['gold'] ?> <a class="btn btn-primary" href="<?='/src/pages/medals_view.php?country=' . $row['country_id'] . '&medal=gold'?>">-></a> </td>
+                <td><?= $row['silver'] ?> <a class="btn btn-primary" href="<?='/src/pages/medals_view.php?country=' . $row['country_id'] . '&medal=silver'?>">-></a> </td>
+                <td><?= $row['bronze'] ?> <a class="btn btn-primary" href="<?='/src/pages/medals_view.php?country=' . $row['country_id'] . '&medal=bronze'?>">-></a> </td>
                 <td><?= $row['total'] ?></td>
             </tr>
             <?php endforeach; ?>
