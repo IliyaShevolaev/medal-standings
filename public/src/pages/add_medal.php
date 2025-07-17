@@ -19,7 +19,7 @@ require_once __DIR__ . '/../db/init_models.php';
             <select class="form-select" name="country_id" required>
                 <?php foreach ($countries->all() as $country): ?>
                     <option value="<?= $country['id'] ?>">
-                        <?= $country['name'] ?>
+                        <?= htmlspecialchars($country['name']) ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -30,7 +30,7 @@ require_once __DIR__ . '/../db/init_models.php';
             <select class="form-select" name="sport_type_id" required>
                 <?php foreach ($sportTypes->all() as $sportType): ?>
                     <option value="<?= $sportType['id'] ?>">
-                        <?= $sportType['name'] ?>
+                        <?= htmlspecialchars($sportType['name']) ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -41,7 +41,7 @@ require_once __DIR__ . '/../db/init_models.php';
             <select class="form-select" name="sportsmans_id[]" multiple required>
                 <?php foreach ($sportsmans->all() as $sportsman): ?>
                     <option value="<?= $sportsman['id'] ?>">
-                        <?= $sportsman['name'] ?>
+                        <?= htmlspecialchars($sportsman['name']) ?>
                     </option>
                 <?php endforeach; ?>
             </select>

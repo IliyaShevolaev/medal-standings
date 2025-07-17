@@ -3,7 +3,7 @@ require_once __DIR__ . '/../scripts/header.php';
 require_once __DIR__ . '/../db/init_models.php';
 ?>
 
-<div class="d-flex flex-column justify-content-center align-items-center">
+<div class="main-container d-flex flex-column justify-content-center align-items-center">
     <div class="input-group mt-3 ">
         <form class="w-100" method="post" action="/src/scripts/sportsmans/create_sportsman.php">
             <input class="form-control" type="text" name="name" placeholder="Введите ФИО">
@@ -22,7 +22,7 @@ require_once __DIR__ . '/../db/init_models.php';
                 <tr>
                     <td>
                         <div class="d-flex justify-content-between">
-                            <p><?= $sportsman['name'] ?></p>
+                            <p><?= htmlspecialchars($sportsman['name']) ?></p>
                             <form method="post" action="/src/scripts/sportsmans/delete_sportsman.php">
                                 <input type="hidden" name="id" value="<?= $sportsman['id'] ?>">
                                 <button type="submit" class="btn btn-outline-danger">X</button>

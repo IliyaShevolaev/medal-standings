@@ -22,7 +22,7 @@ require_once __DIR__ . '/../db/init_models.php';
                 <tr>
                     <td>
                         <div class="d-flex justify-content-between">
-                            <p><?= $country['name'] ?></p>
+                            <p><?= htmlspecialchars($country['name']) ?></p>
                             <form method="post" action="/src/scripts/countries/delete_country.php">
                                 <input type="hidden" name="id" value="<?= $country['id'] ?>">
                                 <button type="submit" class="btn btn-outline-danger">X</button>

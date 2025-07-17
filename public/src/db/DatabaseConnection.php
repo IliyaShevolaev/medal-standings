@@ -12,7 +12,7 @@ class DatabaseConnection
     private function __construct()
     {
         $config = require_once __DIR__ . '/../config/database.php';
-
+        
         $this->connection = new mysqli(
             $config['host'],
             $config['username'],
