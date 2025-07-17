@@ -8,9 +8,9 @@ class Model
     private $dbConnection;
     private $fields;
 
-    private function fetchData(string $query): array
+    private function fetchData(string $query, $params = []): array
     {
-        $result = $this->dbConnection->makeQuery($query);
+        $result = $this->dbConnection->makeQuery($query, $params);
         $resultArray = [];
 
         if ($result) {
@@ -28,6 +28,11 @@ class Model
         return $resultArray;
     }
 
+    private function escapeTags(string $value): string
+    {
+        return strip_tags($value, '<b><i><p><strong>');
+    }
+
     public function __construct(string $tableName, array $fields)
     {
         $this->tableName = $tableName;
@@ -40,52 +45,65 @@ class Model
         return $this->fetchData('SELECT * FROM ' . $this->tableName);
     }
 
-
     public function insert(array $values): int
-    {   
-        $fieldNamesArray = [];
-        
+    {
+        $fieldNames = [];
+        $placeholders = [];
+
         foreach ($this->fields as $field) {
-            if ($field !== 'id') { 
-                $fieldNamesArray[] = $field;
+            if ($field != 'id') {
+                $fieldNames[] = $field;
+                $placeholders[] = '?';
             }
         }
-        
-        $fielsNameString = ' (' . implode(', ', $fieldNamesArray) . ')';
 
-        $valuesString = ' (';
+        $fieldsString = ' (' . implode(', ', $fieldNames) . ')';
+        $placeholdersString = ' (' . implode(', ', $placeholders) . ')';
 
-        $valuesString .= implode(', ', $values) . ')';
+        $query = 'INSERT INTO ' . $this->tableName . $fieldsString . ' VALUES ' . $placeholdersString;
 
-        $this->dbConnection->makeQuery(
-            'INSERT INTO ' . 
-            $this->tableName . 
-            $fielsNameString . 
-            ' VALUES ' .
-            $valuesString
-        );
+        $types = '';
+        $params = [];
+
+        foreach ($values as $value) {
+            if (is_int($value)) {
+                $types .= 'i';
+            } else if (is_string($value)) {
+                $types .= 's';
+                $value = $this->escapeTags($value);
+            }
+
+            $params[] = $value;
+        }
+
+        $this->dbConnection->makeQuery($query, [
+            'types' => $types,
+            'values' => $params
+        ]);
 
         return $this->dbConnection->getLastInsertId();
     }
 
-    public function where(string $query): array 
+    public function where(string $query, array $params = []): array
     {
-         return $this->fetchData(
-            'SELECT * FROM ' . 
-            $this->tableName . 
-            ' WHERE ' . 
-            $query
+        return $this->fetchData(
+            'SELECT * FROM ' .
+            $this->tableName .
+            ' WHERE ' .
+            $query,
+            $params
         );
     }
 
-    public function delete(int $id): void 
+    public function delete(int $id, $params = []): void
     {
         $this->dbConnection->makeQuery(
-            'DELETE FROM ' . 
-            $this->tableName . 
-            ' WHERE ' . 
+            'DELETE FROM ' .
+            $this->tableName .
+            ' WHERE ' .
             'id = ' .
-            $id
+            $id,
+            $params
         );
     }
 }

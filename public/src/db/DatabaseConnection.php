@@ -12,7 +12,7 @@ class DatabaseConnection
     private function __construct()
     {
         $config = require_once __DIR__ . '/../config/database.php';
-        
+
         $this->connection = new mysqli(
             $config['host'],
             $config['username'],
@@ -25,6 +25,17 @@ class DatabaseConnection
         }
     }
 
+    private function prepare(string $query, array $params): bool|mysqli_stmt
+    {
+        $stmt = $this->connection->prepare($query);
+
+        if (!empty($params)) {
+            $stmt->bind_param($params['types'], ...$params['values']);
+        }
+
+        return $stmt;
+    }
+
     public static function getInstance(): DatabaseConnection
     {
         if (self::$instance === null) {
@@ -34,9 +45,20 @@ class DatabaseConnection
         return self::$instance;
     }
 
-    public function makeQuery(string $query): mysqli_result | bool
+    public function makeQuery(string $query, array $params): mysqli_result|bool
     {
-        return $this->connection->query($query);
+        if (empty($params)) {
+            return $this->connection->query($query);
+        }
+
+        $stmt = $this->prepare($query, $params);
+        $stmt->execute();
+
+        if (str_starts_with(trim($query), 'SELECT')) {
+            return $stmt->get_result();
+        }
+
+        return $stmt->affected_rows > 0;
     }
 
     public function getLastInsertId(): int

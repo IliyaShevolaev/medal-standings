@@ -22,7 +22,7 @@ require_once __DIR__ . '/../db/init_models.php';
                 <tr>
                     <td>
                         <div class="d-flex justify-content-between">
-                            <p><?= htmlspecialchars($sportType['name']) ?></p>
+                        <p><?= strip_tags($sportType['name'], ['<b><i><p><strong>']) ?></p>
                             <form method="post" action="/src/scripts/sport_types/delete_sport_type.php">
                                 <input type="hidden" name="id" value="<?= $sportType['id'] ?>">
                                 <button type="submit" class="btn btn-outline-danger">X</button>

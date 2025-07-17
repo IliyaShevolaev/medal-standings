@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../db/init_models.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $medalToInsert = [];
-    $medalToInsert[] = "'" . $_POST['type'] . "'";
+    $medalToInsert[] = $_POST['type'];
     $medalToInsert[] = $_POST['sport_type_id'];
     $medalToInsert[] = $_POST['country_id'];
 

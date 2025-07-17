@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $countryToInsert = [];
 
     if (isset($_POST['name']) && $_POST['name'] !== '') {
-        $countryToInsert[] = "'" . $_POST['name'] . "'";
+        $countryToInsert[] = $_POST['name'];
         $countries->insert($countryToInsert);
     }
 

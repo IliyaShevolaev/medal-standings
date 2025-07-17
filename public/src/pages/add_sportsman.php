@@ -22,7 +22,7 @@ require_once __DIR__ . '/../db/init_models.php';
                 <tr>
                     <td>
                         <div class="d-flex justify-content-between">
-                            <p><?= htmlspecialchars($sportsman['name']) ?></p>
+                            <p><?= strip_tags($sportsman['name'], ['<b><i><p><strong>']) ?></p>
                             <form method="post" action="/src/scripts/sportsmans/delete_sportsman.php">
                                 <input type="hidden" name="id" value="<?= $sportsman['id'] ?>">
                                 <button type="submit" class="btn btn-outline-danger">X</button>

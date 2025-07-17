@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sportTypeToInsert = [];
 
     if (isset($_POST['name']) && $_POST['name'] != '') {
-        $sportTypeToInsert[] = "'" . $_POST['name'] . "'";
+        $sportTypeToInsert[] = $_POST['name'];
         $sportTypes->insert($sportTypeToInsert);
     }
 

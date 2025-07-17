@@ -20,18 +20,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     $selectedCountry = $_GET['country'];
+    if (!ctype_digit($selectedCountry)) {
+        $selectedCountry = 0;
+    }
+
     $selectedMedalType = $_GET['medal'];
 
     $sportsmansRecords = $sportsmans->all();
     $sportTypeRecords = $sportTypes->all();
 
+    $params = ['is', [$selectedMedalType, $selectedCountry]];
     $medalsByCountryAndType = $medals->where("type = '" . $selectedMedalType . "' and country_id = " . $selectedCountry);
 }
 ?>
 
 <div class="d-flex flex-column justify-content-center align-items-center"
     style="padding-left: 10rem; padding-right: 10rem;">
-    <h1><?= getNameById($countries->all(), $_GET['country']) . ', ' . $medalTypeHeader ?> медали</h1>
+    <h1><?= htmlspecialchars(getNameById($countries->all(), $selectedCountry)) . ', ' . $medalTypeHeader ?> медали</h1>
     <?php
     foreach ($medalsByCountryAndType as $record) {
         $sportsmansWithSelectedMedals = $medalsSportsmans->where('medal_id = ' . $record['id']);
@@ -45,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $sportsmansString = implode(', ', $currentSportsmans);
         $sportType = getNameById($sportTypeRecords, $record['sport_type_id']);
 
-        echo '<p> ' . $sportsmansString . ' — ' . $sportType . '</p>';
+        echo '<p> ' . htmlspecialchars($sportsmansString) . ' — ' . htmlspecialchars($sportType) . '</p>';
     }
     ?>
 </div>
