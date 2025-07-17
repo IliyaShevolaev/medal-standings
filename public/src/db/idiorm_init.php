@@ -8,4 +8,4 @@ ORM::configure($config['db_driver'] . ':host=' . $config['host'] . ';dbname=' . 
 ORM::configure('username', $config['username']);
 ORM::configure('password', $config['password']);
 
-ORM::configure('driver_options', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+ORM::configure('driver_options', [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8']);

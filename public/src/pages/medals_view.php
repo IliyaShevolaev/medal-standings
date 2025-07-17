@@ -34,8 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 ?>
 
-<div class="d-flex flex-column justify-content-center align-items-center"
-    style="padding-left: 10rem; padding-right: 10rem;">
+<div class="main-container d-flex flex-column justify-content-center align-items-center">
     <h1><?= htmlspecialchars(getNameById(ORM::forTable('countries')->findArray(), $selectedCountry)) . ', ' . $medalTypeHeader ?> медали</h1>
     <?php
     foreach ($medalsByCountryAndType as $record) {
