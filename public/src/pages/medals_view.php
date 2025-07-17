@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../scripts/header.php';
-require_once __DIR__ . '/../db/init_models.php';
+require_once __DIR__ . '/../db/idiorm_init.php';
 require_once __DIR__ . '/../scripts/get_name.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -26,20 +26,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     $selectedMedalType = $_GET['medal'];
 
-    $sportsmansRecords = $sportsmans->all();
-    $sportTypeRecords = $sportTypes->all();
+    $sportsmansRecords = ORM::forTable('sportsmans')->findArray();
+    $sportTypeRecords = ORM::forTable('sport_types')->findArray();
 
     $params = ['is', [$selectedMedalType, $selectedCountry]];
-    $medalsByCountryAndType = $medals->where("type = '" . $selectedMedalType . "' and country_id = " . $selectedCountry);
+    $medalsByCountryAndType = ORM::forTable('medals')->where('type', $selectedMedalType)->where('country_id', $selectedCountry)->findArray();
 }
 ?>
 
 <div class="d-flex flex-column justify-content-center align-items-center"
     style="padding-left: 10rem; padding-right: 10rem;">
-    <h1><?= htmlspecialchars(getNameById($countries->all(), $selectedCountry)) . ', ' . $medalTypeHeader ?> медали</h1>
+    <h1><?= htmlspecialchars(getNameById(ORM::forTable('countries')->findArray(), $selectedCountry)) . ', ' . $medalTypeHeader ?> медали</h1>
     <?php
     foreach ($medalsByCountryAndType as $record) {
-        $sportsmansWithSelectedMedals = $medalsSportsmans->where('medal_id = ' . $record['id']);
+        $sportsmansWithSelectedMedals = ORM::forTable('medals_sportsmans')->where('medal_id', $record['id'])->findArray();
 
         $currentSportsmans = [];
 

@@ -1,10 +1,10 @@
 <?php
 
-require_once __DIR__ . '/../../db/init_models.php';
+require_once __DIR__ . '/../../db/idiorm_init.php';
 require_once __DIR__ . '/../../scripts/get_name.php';
 
-$allMedals = $medals->all();
-$allCountries = $countries->all();
+$allMedals = ORM::forTable('medals')->findArray();
+$allCountries = ORM::forTable('countries')->findArray();
 
 $medalsByCountry = [];
 

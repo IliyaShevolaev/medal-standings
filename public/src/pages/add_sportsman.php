@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../scripts/header.php';
-require_once __DIR__ . '/../db/init_models.php';
+require_once __DIR__ . '/../db/idiorm_init.php';
+
+$sportsmans = ORM::forTable('sportsmans')->findArray();
 ?>
 
 <div class="main-container d-flex flex-column justify-content-center align-items-center">
@@ -18,7 +20,7 @@ require_once __DIR__ . '/../db/init_models.php';
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($sportsmans->all() as $sportsman): ?>
+            <?php foreach ($sportsmans as $sportsman): ?>
                 <tr>
                     <td>
                         <div class="d-flex justify-content-between">

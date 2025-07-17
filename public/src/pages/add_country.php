@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../scripts/header.php';
-require_once __DIR__ . '/../db/init_models.php';
+require_once __DIR__ . '/../db/idiorm_init.php';
+
+$countries = ORM::forTable('countries')->findArray();
 ?>
 
 <div class="main-container d-flex flex-column justify-content-center align-items-center">
@@ -18,7 +20,7 @@ require_once __DIR__ . '/../db/init_models.php';
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($countries->all() as $country): ?>
+            <?php foreach ($countries as $country): ?>
                 <tr>
                     <td>
                         <div class="d-flex justify-content-between">

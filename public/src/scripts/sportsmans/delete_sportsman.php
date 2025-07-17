@@ -1,9 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../../db/init_models.php';
+require_once __DIR__ . '/../../db/idiorm_init.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sportsmans->delete((int)$_POST['id']);
+    ORM::forTable('sportsmans')->find_one($_POST['id'])->delete();
 
     header("Location: " . $_SERVER['HTTP_REFERER']);
     exit;

@@ -1,25 +1,22 @@
 <?php 
 
-require_once __DIR__ . '/../../db/init_models.php';
+require_once __DIR__ . '/../../db/idiorm_init.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $medalToInsert = [];
-    $medalToInsert[] = $_POST['type'];
-    $medalToInsert[] = $_POST['sport_type_id'];
-    $medalToInsert[] = $_POST['country_id'];
+    $medalToInsert['type'] = $_POST['type'];
+    $medalToInsert['sport_type_id'] = $_POST['sport_type_id'];
+    $medalToInsert['country_id'] = $_POST['country_id'];
 
-    $currentMedalId = $medals->insert($medalToInsert);
-    
-    var_dump($_POST['sportsmans_id']);
-    echo '<br>';
-    var_dump($currentMedalId);
+    $currentMedal = ORM::forTable('medals')->create($medalToInsert);
+    $currentMedal->save();
 
     foreach ($_POST['sportsmans_id'] as $sportsmanId) {
         $medalSportsmansToInsert = [];
-        $medalSportsmansToInsert[] = $currentMedalId;
-        $medalSportsmansToInsert[] = $sportsmanId;
+        $medalSportsmansToInsert['medal_id'] = $currentMedal->id();
+        $medalSportsmansToInsert['sportsman_id'] = $sportsmanId;
 
-        $medalsSportsmans->insert($medalSportsmansToInsert);
+        ORM::forTable('medals_sportsmans')->create($medalSportsmansToInsert)->save();
     }
 
     header("Location: " . '/');

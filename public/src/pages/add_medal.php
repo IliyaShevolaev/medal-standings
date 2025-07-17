@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . '/../scripts/header.php';
-require_once __DIR__ . '/../db/init_models.php';
+require_once __DIR__ . '/../db/idiorm_init.php';
+
+$countries = ORM::forTable('countries')->findArray();
+$sportTypes = ORM::forTable('sport_types')->findArray();
+$sportsmans = ORM::forTable('sportsmans')->findArray();
 ?>
 
 <form class="w-100" method="post" action="/src/scripts/medals/create_medal.php">
@@ -17,7 +21,7 @@ require_once __DIR__ . '/../db/init_models.php';
         <div>
             <p>Страна</p>
             <select class="form-select" name="country_id" required>
-                <?php foreach ($countries->all() as $country): ?>
+                <?php foreach ($countries as $country): ?>
                     <option value="<?= $country['id'] ?>">
                         <?= strip_tags($country['name'], ['<b><i><p><strong>'])?>
                     </option>
@@ -28,7 +32,7 @@ require_once __DIR__ . '/../db/init_models.php';
         <div>
             <p>Вид спорта</p>
             <select class="form-select" name="sport_type_id" required>
-                <?php foreach ($sportTypes->all() as $sportType): ?>
+                <?php foreach ($sportTypes as $sportType): ?>
                     <option value="<?= $sportType['id'] ?>">
                         <?= strip_tags($sportType['name'], ['<b><i><p><strong>']) ?>
                     </option>
@@ -39,7 +43,7 @@ require_once __DIR__ . '/../db/init_models.php';
         <div>
             <p>Спортсмен</p>
             <select class="form-select" name="sportsmans_id[]" multiple required>
-                <?php foreach ($sportsmans->all() as $sportsman): ?>
+                <?php foreach ($sportsmans as $sportsman): ?>
                     <option value="<?= $sportsman['id'] ?>">
                         <?= strip_tags($sportsman['name'], ['<b><i><p><strong>']) ?>
                     </option>
