@@ -1,3 +1,4 @@
+{include file="components/header.tpl"}
 <div class="main-container d-flex flex-column justify-content-center align-items-center">
     <table class="table table-primary mt-3">
         <thead>
@@ -40,3 +41,4 @@
         <a href="/src/pages/add_sportsman.php" class="btn btn-outline-primary">Добавить спортсмена</a>
     </div>
 </div>
+{include file="components/footer.tpl"}

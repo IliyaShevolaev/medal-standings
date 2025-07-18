@@ -1,5 +1,4 @@
 <?php
-require_once './src/scripts/header.php';
 require_once __DIR__ . '/../scripts/medals/medals_table_count.php';
 require_once __DIR__ . '/../scripts/medals/sort_medals.php';
 require_once __DIR__ . '/../resources/template_engine/Smarty/init.php';
@@ -21,6 +20,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $smarty->assign(compact('medalsByCountry'));
     $smarty->display('medals/show_table.tpl');
 }
-
-require_once './src/scripts/footer.php';
 ?>

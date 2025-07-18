@@ -13,4 +13,4 @@
 </head>
 
 <body>
-<?php require_once __DIR__ . '/../UI/navbar.php' ?>
+    {include file="components/navbar.tpl"}

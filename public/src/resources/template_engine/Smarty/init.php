@@ -8,7 +8,7 @@ $baseDir = dirname(__DIR__);
 
 $smarty = new Smarty();
 
-$smarty->setConfigDir($baseDir . '/config');
-$smarty->setCompileDir($baseDir . '/templates_c');
-$smarty->setCacheDir($baseDir . '/cache');
+$smarty->setConfigDir($baseDir . '/Smarty/config');
+$smarty->setCompileDir($baseDir . '/Smarty/templates_c');
+$smarty->setCacheDir($baseDir . '/Smarty/cache');
 $smarty->setTemplateDir(dirname(__DIR__, 2) . '/views');

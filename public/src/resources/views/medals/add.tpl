@@ -1,3 +1,4 @@
+{include file="components/header.tpl"}
 <form class="w-100" method="post" action="/src/scripts/medals/create_medal.php">
     <div class="main-container d-flex flex-row justify-content-between align-items-center mt-3">
         <div>
@@ -41,3 +42,4 @@
         <button type="submit" class="btn btn-outline-success mt-2 w-25">Добавить</button>
     </div>
 </form>
+{include file="components/footer.tpl"}
