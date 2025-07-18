@@ -4,7 +4,10 @@ require_once __DIR__ . '/../resources/template_engine/Smarty/init.php';
 
 $sportsmans = ORM::forTable('sportsmans')->findArray();
 
-$smarty->assign(compact('sportsmans'));
-$smarty->display("sportsmans/add.tpl");
+$smarty->assign([
+    'path' => 'sportsmans/add.tpl',
+    'sportsmans' => $sportsmans
+]);
+$smarty->display("layouts/main.tpl");
 
 ?>

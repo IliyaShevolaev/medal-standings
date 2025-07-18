@@ -1,4 +1,3 @@
-{include file="components/header.tpl"}
 <div class="main-container d-flex flex-column justify-content-center align-items-center">
     <h1>{$header.country}, {$header.medal} медали</h1>
 
@@ -6,4 +5,3 @@
     <p>{$row.name} — {$row.sport_type}</p>
     {/foreach}
 </div>
-{include file="components/footer.tpl"}

@@ -1,4 +1,3 @@
-{include file="components/header.tpl"}
 <div class="main-container d-flex flex-column justify-content-center align-items-center">
     <div class="input-group mt-3 ">
         <form class="w-100" method="post" action="/src/scripts/sport_types/create_sport_type.php">
@@ -30,4 +29,3 @@
         </tbody>
     </table>
 </div>
-{include file="components/footer.tpl"}

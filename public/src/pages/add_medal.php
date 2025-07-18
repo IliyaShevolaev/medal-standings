@@ -6,9 +6,12 @@ $countries = ORM::forTable('countries')->findArray();
 $sportTypes = ORM::forTable('sport_types')->findArray();
 $sportsmans = ORM::forTable('sportsmans')->findArray();
 
-$smarty->assign(compact('countries'));
-$smarty->assign(compact('sportTypes'));
-$smarty->assign(compact('sportsmans'));
-$smarty->display('medals/add.tpl');
+$smarty->assign([
+    'path' => 'medals/add.tpl',
+    'countries' => $countries,
+    'sportTypes' => $sportTypes,
+    'sportsmans' => $sportsmans,
+]);
+$smarty->display("layouts/main.tpl");
 
 ?>

@@ -65,7 +65,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     $smarty->assign(compact('header'));
     $smarty->assign(compact('medalsRow'));
-    $smarty->display('medals/show.tpl');
+    $smarty->assign([
+        'path' => 'medals/show.tpl',
+        'header' => $header,
+        'medalsRow' => $medalsRow,
+    ]);
+    $smarty->display('layouts/main.tpl');
 
 }
 ?>

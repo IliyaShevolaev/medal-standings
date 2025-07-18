@@ -16,8 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         defaultSort($medalsByCountry, $asc);
     }
 
-    $smarty->assign(compact('asc'));
-    $smarty->assign(compact('medalsByCountry'));
-    $smarty->display('medals/show_table.tpl');
+    $smarty->assign([
+        'path' => 'medals/show_table.tpl',
+        'asc' => $asc,
+        'medalsByCountry' => $medalsByCountry,
+    ]);
+    $smarty->display('layouts/main.tpl');
 }
 ?>
