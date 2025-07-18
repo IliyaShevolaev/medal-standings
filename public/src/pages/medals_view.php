@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../scripts/header.php';
 require_once __DIR__ . '/../db/idiorm_init.php';
+require_once __DIR__ . '/../resources/template_engine/Smarty/init.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $medalTypeHeader = '';
@@ -46,29 +47,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         ->where('medals.country_id', $selectedCountry)
         ->findArray();
 
-    $medalRow = [];
+    $medalsRow = [];
     foreach ($medalsByCountryAndType as $record) {
-        if (isset($medalRow[$record['medal_id']])) {
-            $medalRow[$record['medal_id']]['name'] .= ', ' . $record['sportsman_name'];
+        if (isset($medalsRow[$record['medal_id']])) {
+            $medalsRow[$record['medal_id']]['name'] .= ', ' . $record['sportsman_name'];
         } else {
-            $medalRow[$record['medal_id']] = [
+            $medalsRow[$record['medal_id']] = [
                 'name' => $record['sportsman_name'],
                 'sport_type' => $record['sport_type_name']
             ];
         }
     }
+
+    $header = [
+      'medal' => $medalTypeHeader,
+      'country' => $selectedCountryName,  
+    ];
+
+    $smarty->assign(compact('header'));
+    $smarty->assign(compact('medalsRow'));
+    $smarty->display('medals/show.tpl');
+
 }
-?>
 
-<div class="main-container d-flex flex-column justify-content-center align-items-center">
-    <h1><?= $selectedCountryName . ', ' . $selectedMedalType ?> медали</h1>
-    <?php
-    foreach ($medalRow as $row) {
-        echo '<p> ' . htmlspecialchars($row['name'] ?? '') . ' — ' . htmlspecialchars($row['sport_type']) . '</p>';
-    }
-    ?>
-</div>
-
-<?php
 require_once __DIR__ . '/../scripts/footer.php';
 ?>

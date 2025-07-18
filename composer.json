@@ -1,5 +1,6 @@
 {
     "require": {
-        "j4mie/idiorm": "^1.5"
+        "j4mie/idiorm": "^1.5",
+        "smarty/smarty": "^5.5"
     }
 }

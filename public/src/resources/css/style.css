@@ -1,0 +1,29 @@
+.link-nonwrap {
+    color: inherit;
+    text-decoration: none; 
+    cursor: default;
+    outline: none;            
+    -webkit-tap-highlight-color: transparent; 
+}
+
+.main-container {
+    padding-left: 10rem;
+    padding-right: 10rem;
+}
+
+@media (max-width: 600px) {
+    .main-container {
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+
+    .table {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .table-header {
+        display: flex;
+        flex-direction: column;
+    }
+}
