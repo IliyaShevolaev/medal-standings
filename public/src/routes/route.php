@@ -1,12 +1,12 @@
 <?php
 
-
-
 return [
-    // GET
-    ['GET', '/', 'TestController', 'test', 'testname'],
-    ['GET', '/countries', 'CountryController', 'index', 'country.index'],
-    ['POST', '/countries/create', 'CountryController', 'create', 'country.create'],
-    ['POST', '/countries/delete', 'CountryController', 'delete', 'country.delete'],
+    ['GET', '/countries', 'CountryController', 'index'],
+    ['POST', '/countries/create', 'CountryController', 'create'],
+    ['POST', '/countries/delete', 'CountryController', 'delete'],
+
+    ['GET', '/', 'MedalController', 'index'],
+    ['GET', '/medal/show', 'MedalController', 'show'],
+
     ['GET', '/new', 'TestController', 'new', 'new.index'],
 ];

@@ -17,15 +17,15 @@
                 <td>{$row.name}</td>
                 <td>
                     {$row.gold}
-                    <a class="btn btn-primary" href="/src/pages/medals_view.php?country={$row.country_id}&medal=gold">-></a>
+                    <a class="btn btn-primary" href="/medal/show?country={$row.country_id}&medal=gold">-></a>
                 </td>
                 <td>
                     {$row.silver}
-                    <a class="btn btn-primary" href="/src/pages/medals_view.php?country={$row.country_id}&medal=silver">-></a>
+                    <a class="btn btn-primary" href="/medal/show?country={$row.country_id}&medal=silver">-></a>
                 </td>
                 <td>
                     {$row.bronze}
-                    <a class="btn btn-primary" href="/src/pages/medals_view.php?country={$row.country_id}&medal=bronze">-></a>
+                    <a class="btn btn-primary" href="/medal/show?country={$row.country_id}&medal=bronze">-></a>
                 </td>
                 <td>{$row.total}</td>
             </tr>
@@ -34,7 +34,7 @@
     </table>
 
     <div class="d-flex w-100 justify-content-between">
-        <a href="/src/pages/add_country.php" class="btn btn-outline-primary">Добавить страну</a>
+        <a href="/countries" class="btn btn-outline-primary">Добавить страну</a>
         <a href="/src/pages/add_medal.php" class="btn btn-outline-primary">Добавить медаль</a>
         <a href="/src/pages/add_sport_type.php" class="btn btn-outline-primary">Добавить вид спорта</a>
         <a href="/src/pages/add_sportsman.php" class="btn btn-outline-primary">Добавить спортсмена</a>
