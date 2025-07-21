@@ -5,6 +5,20 @@ namespace App\classes\MVC;
 class Router
 {
     private $uri;
+    private $uriSkipEntityWords = [''];
+
+    private function parseEntityName()
+    {
+        $currentEntityName = '';
+        foreach (explode('/', $this->uri) as $uriPart) {
+            if (!in_array($uriPart, $this->uriSkipEntityWords)) {
+                $currentEntityName = $uriPart;
+                break;
+            }
+        }
+
+        return $currentEntityName;
+    }
 
     public function __construct($uri = '/')
     {
@@ -22,8 +36,13 @@ class Router
     protected function findRoute($method, $uri)
     {
         $routes = require __DIR__ . '/../../routes/route.php';
+        $currentEntity = $this->parseEntityName();
 
-        foreach ($routes as $route) {
+        if (!isset($routes[$currentEntity])) {
+            return ['GET', '/medal', 'MedalController', 'index'];
+        }
+
+        foreach ($routes[$currentEntity] as $route) {
             if ($route[0] == $method && $route[1] == $uri) {
                 return $route;
             }

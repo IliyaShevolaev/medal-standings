@@ -23,13 +23,13 @@ class SportTypeController extends Controller
             'name' => $requestData['name']
         ]);
 
-        $this->redirect('/sport_types/create');
+        $this->redirect('/sport-types/create');
     }
 
     public function delete(array $requestData): void
     {
         SportTypeModel::delete($requestData['id']);
 
-        $this->redirect('/sport_types/create');
+        $this->redirect('/sport-types/create');
     }
 }

@@ -36,7 +36,7 @@
     <div class="d-flex w-100 justify-content-between">
         <a href="/countries/create" class="btn btn-outline-primary">Добавить страну</a>
         <a href="/medal/create" class="btn btn-outline-primary">Добавить медаль</a>
-        <a href="/sport_types/create" class="btn btn-outline-primary">Добавить вид спорта</a>
+        <a href="/sport-types/create" class="btn btn-outline-primary">Добавить вид спорта</a>
         <a href="/sportsmans/create" class="btn btn-outline-primary">Добавить спортсмена</a>
     </div>
 </div>
