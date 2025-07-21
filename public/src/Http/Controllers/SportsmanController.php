@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\classes\MVC\Controller;
-use App\classes\MVC\View;
+use App\Classes\MVC\Controller;
+use App\Classes\MVC\View;
 use App\models\SportsmanModel;
 
 class SportsmanController extends Controller

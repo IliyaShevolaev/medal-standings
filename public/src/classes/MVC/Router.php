@@ -1,13 +1,13 @@
 <?php
 
-namespace App\classes\MVC;
+namespace App\Classes\MVC;
 
 class Router
 {
     private $uri;
     private $uriSkipEntityWords = [''];
 
-    private function parseEntityName()
+    private function parseEntityName(): string
     {
         $currentEntityName = '';
         foreach (explode('/', $this->uri) as $uriPart) {
@@ -28,12 +28,12 @@ class Router
         }
     }
 
-    public function getUri()
+    public function getUri(): string
     {
         return $this->uri;
     }
 
-    protected function findRoute($method, $uri)
+    protected function findRoute(string $method, string $uri): mixed
     {
         $routes = require __DIR__ . '/../../routes/route.php';
         $currentEntity = $this->parseEntityName();
@@ -47,34 +47,39 @@ class Router
                 return $route;
             }
         }
+
+        return null;
     }
 
-    public function get() {
+    public function get(): mixed
+    {
         $route = $this->findRoute('GET', $this->uri);
 
-        if($route != NULL) {
-            $class = "App\Http\Controllers\\".$route[2];
+        if ($route != NULL) {
+            $class = "App\Http\Controllers\\" . $route[2];
             $controller = new $class();
 
             return call_user_func(array($controller, $route[3]), $_GET);
-        }
-        else {
+        } else {
             var_dump('error get');
+
+            return null;
         }
     }
 
-    public function post() 
+    public function post(): mixed
     {
         $route = $this->findRoute('POST', $this->uri);
 
-        if($route != NULL) {
-            $class = "App\Http\Controllers\\".$route[2];
+        if ($route != NULL) {
+            $class = "App\Http\Controllers\\" . $route[2];
             $controller = new $class();
 
             return call_user_func(array($controller, $route[3]), $_POST);
-        }
-        else {
+        } else {
             var_dump('error post');
+
+            return null;
         }
     }
 }

@@ -1,10 +1,11 @@
 <?php
 
-use App\classes\MVC\Router;
+use App\Classes\MVC\Router;
+use App\db\InitOrm;
 
 require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/src/db/idiorm_init.php';
-require_once __DIR__ . '/src/routes/route.php';
+
+InitOrm::init();
 
 $router = new Router($_SERVER['REQUEST_URI']);
 $GLOBALS["route"] = $route;
@@ -21,5 +22,3 @@ switch ($_SERVER['REQUEST_METHOD']) {
     default:
         printf('Err');
 }
-
-?>

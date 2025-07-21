@@ -1,6 +1,6 @@
 <?php
 
-namespace App\classes\MVC;
+namespace App\Classes\MVC;
 
 class Controller
 {

@@ -2,7 +2,7 @@
 
 namespace App\models;
 
-use App\classes\MVC\Model;
+use App\Classes\MVC\Model;
 
 class MedalModel extends Model
 {

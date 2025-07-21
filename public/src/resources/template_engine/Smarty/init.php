@@ -1,11 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../../../../../vendor/autoload.php';
-
 use Smarty\Smarty;
 
 $baseDir = dirname(__DIR__);
-//var_dump($baseDir);
 
 $smarty = new Smarty();
 

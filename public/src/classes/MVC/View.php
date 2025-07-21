@@ -1,10 +1,8 @@
 <?php
 
-namespace App\classes\MVC;
+namespace App\Classes\MVC;
 
 use Smarty\Smarty;
-
-require_once __DIR__ . '/../../../../vendor/autoload.php';
 
 class View
 {

@@ -1,8 +1,6 @@
 <?php
 
-namespace App\classes\MVC;
-
-require_once __DIR__ . '/../../../../vendor/j4mie/idiorm/idiorm.php';
+namespace App\Classes\MVC;
 
 use ORM;
 
@@ -87,7 +85,7 @@ abstract class Model
         return ORM::forTable(static::$tableName)->findOne($id);
     }
 
-    public static function create(array $modelData): ORM | bool
+    public static function create(array $modelData): ORM|bool
     {
         $preparedInsertData = [];
         $hasUncorrectValue = false;

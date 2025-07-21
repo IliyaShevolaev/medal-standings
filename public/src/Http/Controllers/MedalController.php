@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\classes\MVC\View;
-use App\classes\MVC\Controller;
+use App\Classes\MVC\View;
+use App\Classes\MVC\Controller;
 use App\models\CountryModel;
 use App\models\MedalModel;
 use App\models\MedalsSportsmansModel;
 use App\models\SportsmanModel;
 use App\models\SportTypeModel;
+use App\Utilities\SortMedals;
 use ORM;
-require_once __DIR__ . '/../../scripts/medals/sort_medals.php';
+
 
 class MedalController extends Controller
 {
@@ -35,9 +36,9 @@ class MedalController extends Controller
         }
 
         if (isset($requestData['sort_key'])) {
-            columnSort($medalsByCountry, $_GET['sort_key'], $asc);
+            SortMedals::columnSort($medalsByCountry, $_GET['sort_key'], $asc);
         } else {
-            defaultSort($medalsByCountry, $asc);
+            SortMedals::defaultSort($medalsByCountry, $asc);
         }
 
         View::make('medals/show_table.tpl', [
