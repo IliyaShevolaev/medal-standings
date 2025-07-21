@@ -1,4 +1,4 @@
-<form class="w-100" method="post" action="/src/scripts/medals/create_medal.php">
+<form class="w-100" method="post" action="/medal/create">
     <div class="main-container d-flex flex-row justify-content-between align-items-center mt-3">
         <div>
             <p>Тип медали</p>

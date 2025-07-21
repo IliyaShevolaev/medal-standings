@@ -7,6 +7,7 @@ return [
 
     ['GET', '/', 'MedalController', 'index'],
     ['GET', '/medal/show', 'MedalController', 'show'],
+    ['POST', '/medal/create', 'MedalController', 'create'],
 
     ['GET', '/new', 'TestController', 'new', 'new.index'],
 ];
