@@ -4,24 +4,44 @@ namespace App\classes\MVC;
 
 class Router
 {
-    private static $routesGet = [];
+    private $uri;
 
-    public static function get(string $url, array $controller)
+    public function __construct($uri = '/')
     {
-        self::$routesGet[] = [
-            'url' => $url,
-            'controller' => [
-                    'class' => $controller[0],
-                    'action' => $controller[1]
-                ]
-        ];
-
-        // var_dump(self::$routesGet);
-        // echo '<br>';
+        $this->uri = $uri;
+        if (isset($_GET)) {
+            $this->uri = strtok($this->uri, '?');
+        }
     }
 
-    public static function test()
+    public function getUri()
     {
-        echo 'router';
+        return $this->uri;
     }
-}   
+
+    protected function findRoute($method, $uri)
+    {
+        $routes = require __DIR__ . '/../../routes/route.php';
+
+        foreach ($routes as $route) {
+            if ($route[0] == $method && $route[1] == $uri) {
+                return $route;
+            }
+        }
+    }
+
+    public function get() {
+        $route = $this->findRoute('GET', $this->uri);
+
+        if($route != NULL) {
+            $class = "App\Http\Controllers\\".$route[2];
+            $controller = new $class();
+
+            return call_user_func(array($controller, $route[3]), $_GET);
+        }
+        else {
+            var_dump('error');
+        }
+    }
+
+}
