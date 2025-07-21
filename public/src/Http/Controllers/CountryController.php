@@ -6,11 +6,9 @@ use App\classes\MVC\Controller;
 use App\classes\MVC\View;
 use App\models\CountryModel;
 
-require_once __DIR__ . '/../../db/idiorm_init.php';
-
 class CountryController extends Controller
 {
-    public function index()
+    public function create(): void
     {
         $countries = CountryModel::all();
         
@@ -19,19 +17,19 @@ class CountryController extends Controller
         ]);
     }
 
-    public function create(array $requestData)
+    public function store(array $requestData): void
     {
         CountryModel::create([
             'name' => $requestData['name']
         ]);
 
-        $this->redirect('/countries');
+        $this->redirect('/countries/create');
     }
 
     public function delete(array $requestData): void
     {
         CountryModel::delete($requestData['id']);
-        
-        $this->redirect('/countries');
+
+        $this->redirect('/countries/create');
     }
 }

@@ -1,6 +1,6 @@
 <div class="main-container d-flex flex-column justify-content-center align-items-center">
     <div class="input-group mt-3">
-        <form class="w-100" method="post" action="/countries/create">
+        <form class="w-100" method="post" action="/countries/store">
             <input class="form-control" type="text" name="name" placeholder="Название страны" />
             <button type="submit" class="btn btn-outline-success mt-2 w-100">Добавить</button>
         </form>

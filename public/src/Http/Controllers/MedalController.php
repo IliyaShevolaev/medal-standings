@@ -7,6 +7,8 @@ use App\classes\MVC\Controller;
 use App\models\CountryModel;
 use App\models\MedalModel;
 use App\models\MedalsSportsmansModel;
+use App\models\SportsmanModel;
+use App\models\SportTypeModel;
 use ORM;
 require_once __DIR__ . '/../../scripts/medals/sort_medals.php';
 
@@ -103,7 +105,20 @@ class MedalController extends Controller
         ]);
     }
 
-    public function create(array $requestData): void
+    public function create(): void
+    {
+        $countries = CountryModel::all();
+        $sportTypes = SportTypeModel::all();
+        $sportsmans = SportsmanModel::all();
+
+        View::make("medals/add.tpl", [
+            'countries' => $countries,
+            'sportTypes' => $sportTypes,
+            'sportsmans' => $sportsmans,
+        ]);
+    }
+
+    public function store(array $requestData): void
     {
         $medalToInsert = [];
         $medalToInsert['type'] = $requestData['type'];

@@ -1,6 +1,6 @@
 <div class="main-container d-flex flex-column justify-content-center align-items-center">
     <div class="input-group mt-3 ">
-        <form class="w-100" method="post" action="/src/scripts/sportsmans/create_sportsman.php">
+        <form class="w-100" method="post" action="/sportsmans/store">
             <input class="form-control" type="text" name="name" placeholder="Введите ФИО">
             <button type="submit" class="btn btn-outline-success mt-2 w-100">Добавить</button>
         </form>
@@ -18,7 +18,7 @@
                     <td>
                         <div class="d-flex justify-content-between">
                             <p>{$sportsman.name}</p>
-                            <form method="post" action="/src/scripts/sportsmans/delete_sportsman.php">
+                            <form method="post" action="/sportsmans/delete">
                                 <input type="hidden" name="id" value={$sportsman.id}>
                                 <button type="submit" class="btn btn-outline-danger">X</button>
                             </form>

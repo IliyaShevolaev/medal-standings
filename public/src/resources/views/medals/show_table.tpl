@@ -34,9 +34,9 @@
     </table>
 
     <div class="d-flex w-100 justify-content-between">
-        <a href="/countries" class="btn btn-outline-primary">Добавить страну</a>
-        <a href="/src/pages/add_medal.php" class="btn btn-outline-primary">Добавить медаль</a>
-        <a href="/src/pages/add_sport_type.php" class="btn btn-outline-primary">Добавить вид спорта</a>
-        <a href="/src/pages/add_sportsman.php" class="btn btn-outline-primary">Добавить спортсмена</a>
+        <a href="/countries/create" class="btn btn-outline-primary">Добавить страну</a>
+        <a href="/medal/create" class="btn btn-outline-primary">Добавить медаль</a>
+        <a href="/sport_types/create" class="btn btn-outline-primary">Добавить вид спорта</a>
+        <a href="/sportsmans/create" class="btn btn-outline-primary">Добавить спортсмена</a>
     </div>
 </div>
