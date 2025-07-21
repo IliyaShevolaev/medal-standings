@@ -91,12 +91,12 @@ abstract class Model
     {
         $preparedInsertData = [];
 
-        foreach ($modelData as $value) {
+        foreach ($modelData as $key => $value) {
             if (is_string($value) && self::prepareSting($value)) {
-                $preparedInsertData[] = $value;
+                $preparedInsertData[$key] = $value;
                 continue;
             } else {
-                $preparedInsertData[] = $value;
+                $preparedInsertData[$key] = $value;
             }
         }
 

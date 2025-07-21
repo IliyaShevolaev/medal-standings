@@ -16,7 +16,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case ("POST"):
-        //$router->post();
+        $router->post();
         break;
 
     default:

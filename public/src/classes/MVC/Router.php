@@ -40,8 +40,22 @@ class Router
             return call_user_func(array($controller, $route[3]), $_GET);
         }
         else {
-            var_dump('error');
+            var_dump('error get');
         }
     }
 
+    public function post() 
+    {
+        $route = $this->findRoute('POST', $this->uri);
+
+        if($route != NULL) {
+            $class = "App\Http\Controllers\\".$route[2];
+            $controller = new $class();
+
+            return call_user_func(array($controller, $route[3]), $_POST);
+        }
+        else {
+            var_dump('error post');
+        }
+    }
 }
