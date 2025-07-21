@@ -87,23 +87,32 @@ abstract class Model
         return ORM::forTable(static::$tableName)->findOne($id);
     }
 
-    public static function create(array $modelData): ORM
+    public static function create(array $modelData): ORM | bool
     {
         $preparedInsertData = [];
+        $hasUncorrectValue = false;
 
         foreach ($modelData as $key => $value) {
-            if (is_string($value) && self::prepareSting($value)) {
-                $preparedInsertData[$key] = $value;
-                continue;
+            if (is_string($value)) {
+                if (self::prepareSting($value)) {
+                    $preparedInsertData[$key] = $value;
+                } else {
+                    $hasUncorrectValue = true;
+                    break;
+                }
             } else {
                 $preparedInsertData[$key] = $value;
             }
         }
 
-        $result = ORM::forTable(static::$tableName)->create($preparedInsertData);
-        $result->save();
+        if (!$hasUncorrectValue) {
+            $result = ORM::forTable(static::$tableName)->create($preparedInsertData);
+            $result->save();
 
-        return $result;
+            return $result;
+        }
+
+        return false;
     }
 
     public static function delete(int $id): void

@@ -5,7 +5,6 @@ use App\classes\MVC\Router;
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/src/db/idiorm_init.php';
 require_once __DIR__ . '/src/routes/route.php';
-// require_once __DIR__ . '/src/pages/main.php';
 
 $router = new Router($_SERVER['REQUEST_URI']);
 $GLOBALS["route"] = $route;
